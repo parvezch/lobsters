@@ -6,7 +6,10 @@ import 'package:lobsters/utils/constants.dart';
 
 final GetIt getIt = GetIt.instance;
 
-@InjectableInit(preferRelativeImports: false, generateForDir: ['lib'])
+@InjectableInit(
+  preferRelativeImports: false,
+  generateForDir: ['lib'],
+)
 void configureDependencies() => $initGetIt(getIt);
 
 @module

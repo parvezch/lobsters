@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:lobsters/models/post.dart';
 import 'package:lobsters/network/api.dart';
 import 'package:lobsters/network/failure.dart';
 
+@LazySingleton(as: API)
 class LobstersAPI implements API {
   final Dio _dioClient;
 
