@@ -18,7 +18,7 @@ class LobstersAPI implements API {
     try {
       final response = await _dioClient.get('hottest.json');
       for (final item in response.data) {
-        final post = Post.fromJson(item as String);
+        final post = Post.fromJson(item);
         posts.add(post);
       }
     } on SocketException {
@@ -28,7 +28,6 @@ class LobstersAPI implements API {
     } on DioError {
       throw Failure('Inter-');
     }
-    print(posts as String);
     return posts;
   }
 }

@@ -38,6 +38,7 @@ class PostsScreen extends ConsumerWidget {
     return posts.when(
         data: (posts) {
           return ListView.builder(
+            itemCount: posts.length,
             itemBuilder: (context, index) {
               return Card(
                 child: Text(posts[index].title),
