@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lobsters/providers/data_providers.dart';
+import 'package:lobsters/widgets/posts_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -8,19 +9,25 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        children: [
-          Expanded(
-            child: PostsScreen(),
-          ),
-        ],
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Lobste.rs"),
+          centerTitle: true,
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: PostsList(),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class PostsScreen extends ConsumerWidget {
-  const PostsScreen({Key? key}) : super(key: key);
+class PostsList extends ConsumerWidget {
+  const PostsList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {
@@ -40,9 +47,7 @@ class PostsScreen extends ConsumerWidget {
           return ListView.builder(
             itemCount: posts.length,
             itemBuilder: (context, index) {
-              return Card(
-                child: Text(posts[index].title),
-              );
+              return PostsCard(posts, index);
             },
           );
         },

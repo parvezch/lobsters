@@ -13,13 +13,16 @@ class LobstersApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "Lobste.rs",
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: HomeScreen(),
+      home: const HomeScreen(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF1E1E1E),
         ),
+        cardColor: const Color(0xFF1E1E1E),
       ),
     );
   }
