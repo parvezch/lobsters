@@ -9,7 +9,7 @@ class Submitter {
   bool isAdmin;
   String about;
   bool isModerator;
-  int karma;
+  int? karma;
   String avatarUrl;
   String invitedByUser;
   Submitter({

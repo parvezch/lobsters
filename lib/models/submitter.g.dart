@@ -12,7 +12,7 @@ Submitter _$SubmitterFromJson(Map<String, dynamic> json) => Submitter(
       isAdmin: json['is_admin'] as bool,
       about: json['about'] as String,
       isModerator: json['is_moderator'] as bool,
-      karma: json['karma'] as int,
+      karma: json['karma'] as int?,
       avatarUrl: json['avatar_url'] as String,
       invitedByUser: json['invited_by_user'] as String,
     );

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:lobsters/models/post.dart';
+import 'package:lobsters/models/post_details.dart';
 import 'package:lobsters/network/api.dart';
 import 'package:lobsters/network/failure.dart';
 
@@ -29,5 +30,21 @@ class LobstersAPI implements API {
       throw Failure('Inter-');
     }
     return posts;
+  }
+
+  @override
+  Future<PostDetails> getPostDetails(String id) async {
+    final PostDetails details;
+    try {
+      final response = await _dioClient.get("s/$id.json");
+      details = PostDetails.fromJson(response.data);
+    } on SocketException catch (_) {
+      throw _.toString();
+    } on FormatException catch (_) {
+      throw _.toString();
+    } on DioError catch (_) {
+      throw _.toString();
+    }
+    return details;
   }
 }

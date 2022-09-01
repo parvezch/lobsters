@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lobsters/models/post.dart';
+import 'package:lobsters/screens/post_screen.dart';
 import 'package:lobsters/widgets/tags_builder.dart';
 import 'package:time_elapsed/time_elapsed.dart';
 
@@ -18,7 +19,14 @@ class PostsCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: InkWell(
-        onTap: () => {},
+        onTap: () => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PostScreen(_posts[_index].shortId),
+            ),
+          ),
+        },
         borderRadius: BorderRadius.circular(8.0),
         splashColor: Colors.blue[50],
         child: Padding(
@@ -67,7 +75,7 @@ class PostsCard extends StatelessWidget {
                       width: 4,
                     ),
                     Text(
-                      "${_posts[_index].commentCount} comments",
+                      "${_posts[_index].commentCount} comment${_posts[_index].commentCount > 1 ? "s" : ""}",
                       style: const TextStyle(
                         color: Colors.grey,
                         fontStyle: FontStyle.italic,

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lobsters/providers/data_providers.dart';
@@ -43,17 +45,20 @@ class PostsList extends ConsumerWidget {
               )
             }));
     return posts.when(
-        data: (posts) {
-          return ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (context, index) {
-              return PostsCard(posts, index);
-            },
-          );
-        },
-        error: (o, __) {
-          return Text(o.toString());
-        },
-        loading: () => const CircularProgressIndicator());
+      data: (posts) {
+        return ListView.builder(
+          itemCount: posts.length,
+          itemBuilder: (context, index) {
+            return PostsCard(posts, index);
+          },
+        );
+      },
+      error: (o, __) {
+        return Text(o.toString());
+      },
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 }
