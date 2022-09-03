@@ -111,23 +111,21 @@ class PostScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: ListView.builder(
-                  controller: controller,
-                  shrinkWrap: true,
-                  itemCount: postDetails.commentCount,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Text(
-                        postDetails.comments[index].commentPlain,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
+              ListView.builder(
+                controller: controller,
+                shrinkWrap: true,
+                itemCount: postDetails.commentCount,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: Text(
+                      postDetails.comments[index].commentPlain,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
