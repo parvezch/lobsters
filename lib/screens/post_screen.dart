@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lobsters/providers/data_providers.dart';
+import 'package:lobsters/widgets/comment_tree.dart';
 import 'package:lobsters/widgets/tags_builder.dart';
 import 'package:time_elapsed/time_elapsed.dart';
 
@@ -75,7 +76,7 @@ class PostScreen extends ConsumerWidget {
                               ),
                             ),
                             Text(
-                              "${postDetails.score} points",
+                              "${postDetails.score} upvotes",
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 12,
@@ -84,6 +85,7 @@ class PostScreen extends ConsumerWidget {
                             ),
                           ],
                         ),
+                        const SizedBox(height: 4.0),
                         Text(
                           postDetails.title,
                           style: const TextStyle(
@@ -111,22 +113,7 @@ class PostScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              ListView.builder(
-                controller: controller,
-                shrinkWrap: true,
-                itemCount: postDetails.commentCount,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: Text(
-                      postDetails.comments[index].commentPlain,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                      ),
-                    ),
-                  );
-                },
-              ),
+              CommentTree(postDetails.comments, controller),
             ],
           ),
         ),
