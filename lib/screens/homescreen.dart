@@ -5,24 +5,49 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lobsters/providers/data_providers.dart';
 import 'package:lobsters/widgets/posts_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final indexProvider = ref.watch(IndexProviderNotifier().provider);
+    List<Widget> children = [
+      Column(
+        children: [
+          Expanded(
+            child: PostsList(),
+          ),
+        ],
+      ),
+      Center(
+        child: Icon(Icons.access_alarm),
+      )
+    ];
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Lobste.rs"),
           centerTitle: true,
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: PostsList(),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: indexProvider.index,
+          onTap: (value) {
+            indexProvider.setIndex(value);
+            print(
+                "index: $value, indexProvider: ${indexProvider._index}, body: ${children[value]}");
+          },
+          items: [
+            BottomNavigationBarItem(
+              label: "Home",
+              icon: Icon(Icons.home),
+            ),
+            BottomNavigationBarItem(
+              label: "Filter",
+              icon: Icon(Icons.filter_alt),
             ),
           ],
         ),
+        body: children[indexProvider.index],
       ),
     );
   }
@@ -60,5 +85,17 @@ class PostsList extends ConsumerWidget {
         child: CircularProgressIndicator(),
       ),
     );
+  }
+}
+
+class IndexProviderNotifier extends ChangeNotifier {
+  final provider = ChangeNotifierProvider(
+    (ref) => IndexProviderNotifier(),
+  );
+  int _index = 0;
+  int get index => _index;
+  void setIndex(int i) {
+    _index = i;
+    notifyListeners();
   }
 }
