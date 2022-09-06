@@ -10,7 +10,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final indexProvider = ref.watch(IndexProviderNotifier().provider);
+    final indexProvider = ref.watch(IndexProviderNotifier.instance);
     List<Widget> children = [
       Column(
         children: [
@@ -33,8 +33,6 @@ class HomeScreen extends ConsumerWidget {
           currentIndex: indexProvider.index,
           onTap: (value) {
             indexProvider.setIndex(value);
-            print(
-                "index: $value, indexProvider: ${indexProvider._index}, body: ${children[value]}");
           },
           items: [
             BottomNavigationBarItem(
@@ -98,4 +96,7 @@ class IndexProviderNotifier extends ChangeNotifier {
     _index = i;
     notifyListeners();
   }
+
+  static final instance =
+      ChangeNotifierProvider((ref) => IndexProviderNotifier());
 }
