@@ -43,12 +43,20 @@ class PostScreen extends ConsumerWidget {
                       children: [
                         Row(
                           children: [
+                            Image(
+                              height: 14.0,
+                              width: 14.0,
+                              image: NetworkImage(
+                                  "https://lobste.rs${postDetails.submitterUser.avatarUrl}"),
+                            ),
+                            const SizedBox(
+                              width: 4.0,
+                            ),
                             Text(
                               postDetails.submitterUser.username,
-                              style: TextStyle(
-                                color: Colors.grey[600],
+                              style: const TextStyle(
+                                color: Colors.blue,
                                 fontSize: 12,
-                                fontStyle: FontStyle.italic,
                               ),
                             ),
                             SizedBox(
@@ -64,7 +72,6 @@ class PostScreen extends ConsumerWidget {
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 12,
-                                fontStyle: FontStyle.italic,
                               ),
                             ),
                             SizedBox(
@@ -80,7 +87,6 @@ class PostScreen extends ConsumerWidget {
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 12,
-                                fontStyle: FontStyle.italic,
                               ),
                             ),
                           ],
