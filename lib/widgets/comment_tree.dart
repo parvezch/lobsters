@@ -32,6 +32,15 @@ class CommentTree extends StatelessWidget {
               children: [
                 Row(
                   children: [
+                    Image(
+                      height: 14.0,
+                      width: 14.0,
+                      image: NetworkImage(
+                          "https://lobste.rs${_comments[index].commentingUser.avatarUrl}"),
+                    ),
+                    const SizedBox(
+                      width: 4.0,
+                    ),
                     Text(
                       _comments[index].commentingUser.username,
                       style: const TextStyle(

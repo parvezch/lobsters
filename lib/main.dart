@@ -23,6 +23,11 @@ class LobstersApp extends StatelessWidget {
           backgroundColor: Color(0xFF1E1E1E),
         ),
         cardColor: const Color(0xFF1E1E1E),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey[600],
+          backgroundColor: const Color(0xFF1E1E1E),
+        ),
       ),
     );
   }
