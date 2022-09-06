@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:lobsters/models/post.dart';
 import 'package:lobsters/models/post_details.dart';
+import 'package:lobsters/models/tags.dart';
 import 'package:lobsters/network/api.dart';
 import 'package:lobsters/repository/repository.dart';
 
@@ -20,5 +21,11 @@ class LobstersRepository implements Repository {
   Future<PostDetails> getPostDetails(String shortId) async {
     final postDetails = await lobstersApi.getPostDetails(shortId);
     return postDetails;
+  }
+
+  @override
+  Future<List<Tags>> getTags() async {
+    final tags = await lobstersApi.getTags();
+    return tags;
   }
 }

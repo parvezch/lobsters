@@ -13,4 +13,8 @@ class DataProviders {
       FutureProvider.family<PostDetails, String>((_, id) async {
     return _repo.getPostDetails(id);
   });
+
+  static final tags = FutureProvider(
+    (ref) async => _repo.getTags(),
+  );
 }
