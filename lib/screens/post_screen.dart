@@ -6,6 +6,7 @@ import 'package:lobsters/providers/data_providers.dart';
 import 'package:lobsters/widgets/comment_tree.dart';
 import 'package:lobsters/widgets/tags_builder.dart';
 import 'package:time_elapsed/time_elapsed.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PostScreen extends ConsumerWidget {
   final String _postId;
@@ -115,6 +116,14 @@ class PostScreen extends ConsumerWidget {
                           fontSize: 14,
                         ),
                       ),
+                      if (postDetails.url.isNotEmpty)
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: ElevatedButton(
+                            onPressed: () => _launchUrl(postDetails.url),
+                            child: const Text("Open Article"),
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -131,5 +140,12 @@ class PostScreen extends ConsumerWidget {
         child: CircularProgressIndicator(),
       );
     });
+  }
+}
+
+void _launchUrl(String url) async {
+  final Uri uri = Uri.parse(url);
+  if (!await launchUrl(uri)) {
+    throw 'Could not launch $uri';
   }
 }
