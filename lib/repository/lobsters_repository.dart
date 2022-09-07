@@ -28,4 +28,10 @@ class LobstersRepository implements Repository {
     final tags = await lobstersApi.getTags();
     return tags;
   }
+
+  @override
+  Future<List<Post>> getPostsByTag(String tag) async {
+    final posts = await lobstersApi.getPostsByTag(tag);
+    return posts;
+  }
 }

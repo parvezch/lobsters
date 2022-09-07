@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lobsters/di/locator.dart';
+import 'package:lobsters/models/post.dart';
 import 'package:lobsters/models/post_details.dart';
 import 'package:lobsters/repository/repository.dart';
 
@@ -17,4 +18,9 @@ class DataProviders {
   static final tags = FutureProvider(
     (ref) async => _repo.getTags(),
   );
+
+  static final FutureProviderFamily<List<Post>, String> postsByTag =
+      FutureProvider.family<List<Post>, String>((_, tag) async {
+    return _repo.getPostsByTag(tag);
+  });
 }

@@ -67,4 +67,23 @@ class LobstersAPI implements API {
     }
     return tags;
   }
+
+  @override
+  Future<List<Post>> getPostsByTag(String tag) async {
+    final posts = <Post>[];
+    try {
+      final response = await _dioClient.get('t/$tag.json');
+      for (final item in response.data) {
+        final post = Post.fromJson(item);
+        posts.add(post);
+      }
+    } on SocketException {
+      throw Failure('No internet');
+    } on FormatException {
+      throw Failure('Try later');
+    } on DioError {
+      throw Failure('Inter-');
+    }
+    return posts;
+  }
 }

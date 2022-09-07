@@ -8,4 +8,6 @@ abstract class Repository {
   Future<PostDetails> getPostDetails(String id);
 
   Future<List<Tags>> getTags();
+
+  Future<List<Post>> getPostsByTag(String tag);
 }

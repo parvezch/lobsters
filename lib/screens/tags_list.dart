@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lobsters/providers/data_providers.dart';
+import 'package:lobsters/screens/filtered_post_list.dart';
 
 class TagsList extends ConsumerWidget {
   const TagsList({Key? key}) : super(key: key);
@@ -27,29 +28,41 @@ class TagsList extends ConsumerWidget {
             return SizedBox(
               height: 70.0,
               child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        tags[index].tag,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            FilteredPostsList(tags[index].tag),
+                      ),
+                    );
+                  },
+                  splashColor: Colors.blue[50],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          tags[index].tag,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 8.0,
-                      ),
-                      Text(
-                        tags[index].description,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ],
+                        const SizedBox(
+                          height: 8.0,
+                        ),
+                        Text(
+                          tags[index].description,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
