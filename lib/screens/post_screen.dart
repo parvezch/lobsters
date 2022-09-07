@@ -30,92 +30,92 @@ class PostScreen extends ConsumerWidget {
     return postDetails.when(data: (postDetails) {
       return SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            leading: const BackButton(),
+          ),
           body: ListView(
             controller: controller,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Image(
-                              height: 14.0,
-                              width: 14.0,
-                              image: NetworkImage(
-                                  "https://lobste.rs${postDetails.submitterUser.avatarUrl}"),
-                            ),
-                            const SizedBox(
-                              width: 4.0,
-                            ),
-                            Text(
-                              postDetails.submitterUser.username,
-                              style: const TextStyle(
-                                color: Colors.blue,
-                                fontSize: 12,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 8,
-                              child: Icon(
-                                Icons.circle,
-                                size: 4,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                            Text(
-                              "${TimeElapsed.fromDateStr(postDetails.createdAt)} ago",
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontSize: 12,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 8,
-                              child: Icon(
-                                Icons.circle,
-                                size: 4,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                            Text(
-                              "${postDetails.score} upvotes",
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 4.0),
-                        Text(
-                          postDetails.title,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Image(
+                            height: 14.0,
+                            width: 14.0,
+                            image: NetworkImage(
+                                "https://lobste.rs${postDetails.submitterUser.avatarUrl}"),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        Row(
-                          children: tagsBuilder(
-                            postDetails.tags,
+                          const SizedBox(
+                            width: 4.0,
                           ),
-                        ),
-                        Text(
-                          postDetails.descriptionPlain,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
+                          Text(
+                            postDetails.submitterUser.username,
+                            style: const TextStyle(
+                              color: Colors.blue,
+                              fontSize: 12,
+                            ),
                           ),
+                          SizedBox(
+                            width: 8,
+                            child: Icon(
+                              Icons.circle,
+                              size: 4,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          Text(
+                            "${TimeElapsed.fromDateStr(postDetails.createdAt)} ago",
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 12,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 8,
+                            child: Icon(
+                              Icons.circle,
+                              size: 4,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          Text(
+                            "${postDetails.score} upvotes",
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4.0),
+                      Text(
+                        postDetails.title,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Row(
+                        children: tagsBuilder(
+                          postDetails.tags,
+                        ),
+                      ),
+                      Text(
+                        postDetails.descriptionPlain,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
