@@ -1,7 +1,10 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:lobsters/models/comment.dart';
+import 'package:lobsters/utils/constants.dart';
+import 'package:lobsters/utils/webview_launcher.dart';
 import 'package:time_elapsed/time_elapsed.dart';
 
 class CommentTree extends StatelessWidget {
@@ -98,12 +101,10 @@ class CommentTree extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 4.0),
-                  Text(
-                    _comments[index].commentPlain,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
+                  MarkdownBody(
+                    data: _comments[index].commentPlain,
+                    styleSheet: Constants.markdownStyleSheet,
+                    onTapLink: (text, href, title) => launchWebview(href!),
                   ),
                 ],
               ),

@@ -1,12 +1,14 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lobsters/providers/data_providers.dart';
+import 'package:lobsters/utils/constants.dart';
+import 'package:lobsters/utils/webview_launcher.dart';
 import 'package:lobsters/widgets/comment_tree.dart';
 import 'package:lobsters/widgets/tags_builder.dart';
 import 'package:time_elapsed/time_elapsed.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class PostScreen extends ConsumerWidget {
   final String _postId;
@@ -109,18 +111,16 @@ class PostScreen extends ConsumerWidget {
                           postDetails.tags,
                         ),
                       ),
-                      Text(
-                        postDetails.descriptionPlain,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
+                      MarkdownBody(
+                        data: postDetails.descriptionPlain,
+                        styleSheet: Constants.markdownStyleSheet,
+                        onTapLink: (text, href, title) => launchWebview(href!),
                       ),
                       if (postDetails.url.isNotEmpty)
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: ElevatedButton(
-                            onPressed: () => _launchUrl(postDetails.url),
+                            onPressed: () => launchWebview(postDetails.url),
                             child: const Text("Open Article"),
                           ),
                         ),
@@ -140,12 +140,5 @@ class PostScreen extends ConsumerWidget {
         child: CircularProgressIndicator(),
       );
     });
-  }
-}
-
-void _launchUrl(String url) async {
-  final Uri uri = Uri.parse(url);
-  if (!await launchUrl(uri)) {
-    throw 'Could not launch $uri';
   }
 }

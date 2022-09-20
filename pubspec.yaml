@@ -31,6 +31,7 @@ dependencies:
   dio: ^4.0.6
   flutter:
     sdk: flutter
+  flutter_markdown: ^0.6.12
   flutter_riverpod: ^1.0.4
   get_it: ^7.2.0
   injectable: ^1.5.3
