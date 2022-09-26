@@ -3,7 +3,7 @@ import 'package:lobsters/models/post_details.dart';
 import 'package:lobsters/models/tags.dart';
 
 abstract class Repository {
-  Future<List<Post>> getPosts();
+  Future<List<Post>> getPosts(int? pageNumber);
 
   Future<PostDetails> getPostDetails(String id);
 

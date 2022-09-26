@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lobsters/notifiers/index_provider_notifier.dart';
-import 'package:lobsters/screens/post_list.dart';
+import 'package:lobsters/screens/hottest_posts.dart';
 import 'package:lobsters/screens/tags_list.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -13,7 +13,7 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final indexProvider = ref.watch(IndexProviderNotifier.instance);
     List<Widget> children = [
-      PostsList(),
+      HottestPosts(),
       TagsList(),
     ];
     return SafeArea(
