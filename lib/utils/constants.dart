@@ -16,7 +16,7 @@ abstract class Constants {
     blockquoteDecoration: const BoxDecoration(
       border: Border(
         left: BorderSide(
-          width: 4.0,
+          width: 3.0,
           color: Color.fromARGB(255, 90, 90, 90),
         ),
       ),

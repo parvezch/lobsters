@@ -39,8 +39,10 @@ class OnGoingBottomWidget extends StatelessWidget {
         final state = ref.watch(DataProviders.post);
         return state.maybeWhen(
           orElse: () => const SizedBox.shrink(),
-          onGoingLoading: (items) =>
-              const Center(child: CircularProgressIndicator()),
+          onGoingLoading: (items) => const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Center(child: CircularProgressIndicator()),
+          ),
         );
       },
     );

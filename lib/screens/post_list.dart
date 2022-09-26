@@ -15,16 +15,22 @@ class PostsList extends ConsumerWidget {
     return posts.when(
       data: (posts) {
         return posts.isEmpty
-            ? const Center(
-                child: CircularProgressIndicator(),
+            ? const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
               )
             : PostsListBuilder(posts);
       },
       error: (o, __) {
         return Text(o.toString());
       },
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
+      loading: () => const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
       onGoingLoading: (items) {
         return PostsListBuilder(items);
