@@ -15,10 +15,10 @@ class LobstersAPI implements API {
   LobstersAPI(this._dioClient);
 
   @override
-  Future<List<Post>> getPosts() async {
+  Future<List<Post>> getPosts(int? pageNumber) async {
     final posts = <Post>[];
     try {
-      final response = await _dioClient.get('hottest.json');
+      final response = await _dioClient.get('page/${pageNumber ?? 1}.json');
       for (final item in response.data) {
         final post = Post.fromJson(item);
         posts.add(post);

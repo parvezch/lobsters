@@ -12,8 +12,8 @@ class LobstersRepository implements Repository {
   LobstersRepository(this.lobstersApi);
 
   @override
-  Future<List<Post>> getPosts() async {
-    final posts = await lobstersApi.getPosts();
+  Future<List<Post>> getPosts(int? pageNumber) async {
+    final posts = await lobstersApi.getPosts(pageNumber);
     return posts;
   }
 
