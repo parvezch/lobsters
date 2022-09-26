@@ -23,7 +23,7 @@ class HottestPosts extends ConsumerWidget {
     return ListView(
       shrinkWrap: true,
       controller: scrollController,
-      children: [
+      children: const [
         PostsList(),
         OnGoingBottomWidget(),
       ],
