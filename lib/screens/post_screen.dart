@@ -121,7 +121,24 @@ class PostScreen extends ConsumerWidget {
                           width: MediaQuery.of(context).size.width,
                           child: ElevatedButton(
                             onPressed: () => launchWebview(postDetails.url),
-                            child: const Text("Open Article"),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.web),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Flexible(
+                                  child: Text(
+                                    postDetails.url,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                     ],
